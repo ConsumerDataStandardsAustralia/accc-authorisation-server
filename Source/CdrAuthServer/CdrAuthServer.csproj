@@ -11,6 +11,12 @@
     <FileVersion>1.0.2</FileVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'MDH-CdrAuthServer' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'MDHE-CdrAuthServer' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'MDH-CdrAuthServerWorkingWithContainers' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'MDHE-CdrAuthServerWorkingWithContainers' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'MDH-CdrAuthServerHeadless' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'MDHE-CdrAuthServerHeadless' " />
   <ItemGroup>
     <None Remove="Certificates\es256-private.pfx" />
     <None Remove="Certificates\ps256-private.pfx" />
