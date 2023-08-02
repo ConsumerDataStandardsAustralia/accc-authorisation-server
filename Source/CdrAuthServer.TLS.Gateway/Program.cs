@@ -26,8 +26,21 @@ var logger = new LoggerConfiguration()
   .CreateLogger();
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
+// Add CORS Policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllOrigins",
+        policy =>
+        {
+            policy.WithOrigins("*")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
+
+app.UseCors();
 
 app.UseExceptionHandler(exceptionHandlerApp =>
 {

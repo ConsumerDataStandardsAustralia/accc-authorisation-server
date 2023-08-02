@@ -1,0 +1,82 @@
+{
+  "Customers": [
+      {
+          "CustomerID": "040c4adf-8f7d-40ab-8ce7-6c91044752fb",
+          "CustomerUType": "person",
+          "LoginId": "koss.blake",
+          "Person": {
+              "PersonID": "040c4adf-8f7d-40ab-8ce7-6c91044752fb",
+              "firstName": "Blake",
+              "lastName": "Koss",
+              "Prefix": "Ms.",
+              "Suffix": "II",
+              "OccupationCode": "252278",
+              "OccupationCodeVersion": "ANZSCO_1220.0_2013_V1.3",
+              "LastUpdateTime": "2022-08-18T04:07:22.485Z"
+          },
+          "Accounts": [
+              {
+                  "AccountId": "914505516",
+                  "CreationDate": "2023-04-30T06:39:43.472Z",
+                  "DisplayName": "Display name",
+                  "OpenStatus": "OPEN",
+                  "MaskedName": "xxxxxxxxx123",
+                  "ProductCategory": "TRANS_AND_SAVINGS_ACCOUNTS",
+                  "ProductName": "TRANS_AND_SAVINGS_ACCOUNTS"
+              },
+              {
+                  "AccountId": "238874532",
+                  "CreationDate": "2022-08-04T22:45:47.439Z",
+                  "DisplayName": "Display name",
+                  "OpenStatus": "OPEN",
+                  "MaskedName": "xxxxxxxxx123",
+                  "ProductCategory": "TRANS_AND_SAVINGS_ACCOUNTS",
+                  "ProductName": "TRANS_AND_SAVINGS_ACCOUNTS"
+              }
+          ]
+      },
+      {
+          "CustomerID": "7eb8b510-625d-49da-9051-c01760146769",
+          "CustomerUType": "person",
+          "LoginId": "Turcotte.Charli",
+          "Person": {
+              "PersonID": "7eb8b510-625d-49da-9051-c01760146769",
+              "firstName": "Charli",
+              "lastName": "Turcotte",
+              "Prefix": "Mr.",
+              "Suffix": "Sr.",
+              "OccupationCode": "752422",
+              "OccupationCodeVersion": "ANZSCO_1220.0_2006_V1.0",
+              "LastUpdateTime": "2023-04-23T09:07:30.888Z"
+          },
+          "Accounts": [
+              {
+                  "AccountId": "883214761",
+                  "CreationDate": "2022-02-18T05:54:55.543Z",
+                  "DisplayName": "Display name",
+                  "OpenStatus": "OPEN",
+                  "MaskedName": "xxxxxxxxx123",
+                  "ProductCategory": "TRANS_AND_SAVINGS_ACCOUNTS",
+                  "ProductName": "TRANS_AND_SAVINGS_ACCOUNTS"
+              },
+              {
+                  "AccountId": "990770288",
+                  "CreationDate": "2021-07-16T17:20:17.933Z",
+                  "DisplayName": "Display name",
+                  "OpenStatus": "OPEN",
+                  "MaskedName": "xxxxxxxxx123",
+                  "ProductCategory": "TRANS_AND_SAVINGS_ACCOUNTS",
+                  "ProductName": "TRANS_AND_SAVINGS_ACCOUNTS"
+              }
+          ]
+      },
+      {
+          "CustomerID": "040262b0-7c7b-4583-a9f6-ac073a0504af",
+          "CustomerUType": "organisation",
+          "Person": {
+              "PersonID": "040262b0-7c7b-4583-a9f6-ac073a0504af"
+          },
+          "Accounts": []
+      }
+  ]
+}
