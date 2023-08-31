@@ -38,7 +38,6 @@ WORKDIR /app
 # Auth API ####################################################################
 COPY --from=publish /app/publish/supervisord.gateway.tls.conf .
 COPY --from=publish /app/publish/gateway-tls ./gateway-tls
-COPY ./CdrAuthServer.TLS.Gateway/Certificates/ca.crt ./gateway-tls/Certificates
 
 RUN apt-get update && apt-get install -y supervisor
 RUN apt-get update && apt-get install -y sudo

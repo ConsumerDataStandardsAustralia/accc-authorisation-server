@@ -21,3 +21,4 @@ DNS.2               = localhost
 DNS.3               = mock-data-holder
 DNS.4               = mock-data-holder-energy
 DNS.5               = auth-server
+DNS.6               = cdr-auth-server

@@ -11,12 +11,16 @@
 
 	<ItemGroup>
 	  <None Remove="Certificates\tls-server.pfx" />
+	  <None Remove="Certificates\ca.crt" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Content Include="Certificates\tls-server.pfx">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
+	  <Content Include="Certificates\ca.crt">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>	  
 	</ItemGroup>
 
 	<ItemGroup>
