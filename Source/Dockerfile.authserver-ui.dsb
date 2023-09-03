@@ -3,15 +3,9 @@
 ###############################################################################
 FROM node:17-alpine AS builder
 
-# RUN apt-get update
-# RUN apt-get install -y nodejs
-# RUN apt-get install -y npm
-# RUN npm install -g live-server
-
 WORKDIR /app
 
-
-ARG target_environment=development
+ARG target_environment=production
 ENV PATH /app/node_modules/.bin:$PATH
 
 RUN npm install react-scripts@latest -g 

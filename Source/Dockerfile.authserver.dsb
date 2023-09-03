@@ -1,5 +1,3 @@
-# The "standalone" CdrAuthServer has no gateways. 
-# This image is used by the Conformance Test Suite and "standalone" CdrAuthServer is also embedded into MDH/MDHE.
 
 ###############################################################################
 # Build base layer
@@ -18,24 +16,6 @@ EXPOSE 8001
 EXPOSE 3000
 ENV ASPNETCORE_ENVIRONMENT=Release
 
-###############################################################################
-# Build CdrAuthServer UI layer
-###############################################################################
-FROM node:14-alpine AS ui-build
-WORKDIR /app
-
-ARG target_environment=production
-ENV PATH /app/node_modules/.bin:$PATH
-
-RUN npm install react-scripts@latest -g 
-COPY CdrAuthServer.UI/package.json package.json
-COPY CdrAuthServer.UI/package-lock.json package-lock.json
-COPY CdrAuthServer.UI/craco.config.js craco.config.js
-COPY CdrAuthServer.UI/.env.production .env.local
-RUN npm ci
-
-COPY CdrAuthServer.UI/. .
-RUN npm run build
 
 ###############################################################################
 # Build CdrAuthServer API layer
@@ -54,7 +34,7 @@ COPY ./CdrAuthServer.API.Logger/. /app/CdrAuthServer.API.Logger
 WORKDIR /app/CdrAuthServer
 RUN dotnet publish -c Release -o /app/publish/cdrauthserver
 
-COPY supervisord.standalone.conf /app/publish/supervisord.standalone.conf
+COPY supervisord.authserver.dsb.conf /app/publish/supervisord.authserver.dsb.conf
 
 ###############################################################################
 # Build final layer
@@ -62,11 +42,8 @@ COPY supervisord.standalone.conf /app/publish/supervisord.standalone.conf
 FROM base AS final
 WORKDIR /app
 
-# Auth UI #####################################################################
-COPY --from=ui-build /app/build ./cdrauthserver-ui/ui
-
 # Auth API ####################################################################
-COPY --from=publish /app/publish/supervisord.standalone.conf .
+COPY --from=publish /app/publish/supervisord.authserver.dsb.conf .
 COPY --from=publish /app/publish/cdrauthserver ./cdrauthserver
 
 RUN apt-get update && apt-get install -y supervisor
@@ -87,5 +64,4 @@ USER appuser:appgroup
 ENV ASPNETCORE_URLS=https://+:8001;http://+:8080
 
 # Entry point #################################################################
-ENTRYPOINT ["/usr/bin/supervisord", "-c", "/app/supervisord.standalone.conf", "-u", "1000"]
-# ENTRYPOINT ["tail", "-f", "/dev/null"]
+ENTRYPOINT ["/usr/bin/supervisord", "-c", "/app/supervisord.authserver.dsb.conf", "-u", "1000"]
