@@ -60,7 +60,7 @@ export function LoginForm({ customerId }: { customerId: string }) {
             {defaultUserIds &&
                 <Alert severity="info" sx={{ my: 2 }}>
                     <Typography variant="body2">
-                        For testing you may use the following user names - <b>{defaultUserIds}</b>
+                        Your LoginID is LastName.Firstname -  eg <b>{defaultUserIds}</b>
                     </Typography>
                 </Alert>}
         </>
@@ -72,7 +72,7 @@ export function LoginForm({ customerId }: { customerId: string }) {
                 Login
             </Typography>
             <Typography color="inherit" variant="body1">
-                You've requested to share your data with {dataRecipientName}.<br />Enter your Customer ID to continue.
+                You've requested to share your data with<br />{dataRecipientName}<br />Enter your Login ID to continue.
             </Typography>
             <InfoPanel />
             <form onSubmit={handleSubmit(onSubmit)}>
