@@ -5,7 +5,7 @@ FROM node:17-alpine AS builder
 
 WORKDIR /app
 
-ARG target_environment=production
+ARG target_environment=dsb
 ENV PATH /app/node_modules/.bin:$PATH
 
 RUN npm install react-scripts@latest -g 
@@ -26,9 +26,5 @@ RUN rm -rf ./*
 COPY --from=builder /app/build .
 
 
-COPY CdrAuthServer.UI/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
-COPY CdrAuthServer.UI/nginx/ssl/ca.crt /usr/local/share/ca-certificates/ca.crt
-COPY CdrAuthServer.UI/nginx/ssl/authserver-ui.crt /etc/nginx/ssl/authserver-ui.crt
-COPY CdrAuthServer.UI/nginx/ssl/authserver-ui.key /etc/nginx/ssl/authserver-ui.key
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
