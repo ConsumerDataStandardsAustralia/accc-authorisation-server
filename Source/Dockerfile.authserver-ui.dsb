@@ -1,0 +1,30 @@
+###############################################################################
+# Build CdrAuthServer UI layer
+###############################################################################
+FROM node:17-alpine AS builder
+
+WORKDIR /app
+
+ARG target_environment=dsb
+ENV PATH /app/node_modules/.bin:$PATH
+
+RUN npm install react-scripts@latest -g 
+COPY CdrAuthServer.UI/package.json package.json
+COPY CdrAuthServer.UI/package-lock.json package-lock.json
+COPY CdrAuthServer.UI/craco.config.js craco.config.js
+COPY CdrAuthServer.UI/.env.${target_environment} .env.local
+COPY supervisord.ui.conf /app/publish/supervisord.ui.conf
+RUN npm ci
+
+COPY CdrAuthServer.UI/. .
+RUN npm run build
+
+FROM nginx:1.19.0
+WORKDIR /usr/share/nginx/html
+EXPOSE 3000
+RUN rm -rf ./*
+COPY --from=builder /app/build .
+
+
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
