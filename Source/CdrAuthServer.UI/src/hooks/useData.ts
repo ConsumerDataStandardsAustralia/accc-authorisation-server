@@ -9,7 +9,15 @@ export function useData() {
     const consentState = useRecoilValue(ConsentState);
 
     const getCustomerByLoginId = async (loginId: string): Promise<CustomerModel | null> => {
-        const data = await fetch(getFullUrl(settings.DATA_FILE_NAME))
+        let customerDataUrl: string = "";
+        // depending on data holder get login info 
+        if (commonState?.dataHolder?.BrandName == ""){
+            customerDataUrl = settings.DATA_FILE_NAME;
+        }else {
+            customerDataUrl = settings.DATA_FILE_NAME;
+        }
+        let url = getFullUrl(customerDataUrl) + `?loginId=${loginId}`;
+        const data = await fetch(url)
             .then((r) => r.json());
         const customers = data.Customers
             .filter((c: any) => c.LoginId === loginId) as CustomerModel[];
